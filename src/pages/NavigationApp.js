@@ -14,7 +14,7 @@ export const NavigationApp = () => (
             <Route exact path="/" component={Splash} />
             <Route path="/signup" component={Signup} />
             <Route path="/signin" component={Signin} />
-            <Route path="*" component={NotFound} />
+            <Route path="*" component={NotFound} /> 
         </Switch>
     </Router>
 )
