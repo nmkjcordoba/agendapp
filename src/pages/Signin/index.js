@@ -1,3 +1,17 @@
+import React from "react";
+import { Input } from "../../componentes/Input";
+
 export const Signin = () => (
-    <p>Signin page</p>
+    <React.Fragment>
+        <img src="./assets/logo.png" alt="logo" />
+        <Input 
+        type="email" 
+        placeholder="Enter your email" 
+        label="Email address" />
+    <Input 
+        type="password" 
+        placeholder="Enter your password" 
+        label="Password" />
+    </React.Fragment>
+    
 )
