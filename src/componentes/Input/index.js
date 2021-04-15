@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import { InputWrapper, Label, InputType } from "./style";
+import { InputWrapper, Label, InputType, InputContainer, IconWrapper } from "./style";
 import {FaEye, FaEyeSlash} from "react-icons/fa";
 
+const iconStyle = {
+    fontSize: '20px',
+    color: '#ccc'
+}
+
 const Icono = ({showEye,onPress}) => (
-    <span onClick={onPress}>
+    <IconWrapper onClick={onPress}>
         {
-            showEye ? <FaEyeSlash /> : <FaEye />
+            showEye ? <FaEyeSlash style={iconStyle} /> : <FaEye style={iconStyle} />
         }        
-    </span>
+    </IconWrapper>
 )
 
 export const Input = ({label, type, placeholder}) => {
@@ -20,14 +25,13 @@ export const Input = ({label, type, placeholder}) => {
     }
 
     return(
-        <section>
+        <InputContainer>
             <Label>{label}</Label>
             <InputWrapper>
                 <InputType placeholder={placeholder} type={typeIput} />
                 {type === "password" && <Icono onPress={toogleTypeInput} showEye={typeIput==="text"} />}
-            </InputWrapper>
-            
-        </section>
+            </InputWrapper>            
+        </InputContainer>
 
     )
 }

@@ -1,13 +1,7 @@
 import { NavigationApp } from "./pages/NavigationApp";
-import {createGlobalStyle} from "styled-components";
 import React from "react";
+import { GlobalStyle } from "./globalStyles";
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-  }
-`;
 
 export const App = () => (
   <React.Fragment>
