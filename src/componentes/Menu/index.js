@@ -1,31 +1,32 @@
-import { FaHome } from "react-icons/fa"
+import { FaHome, FaCalendar, FaCheckCircle, FaUser, FaFacebook } from "react-icons/fa"
 import { ItemMenu } from "../../pages/Home/components/ItemMenu";
+import { MenuWrapper } from "../../pages/Home/style";
 
 const MenuOptions = [
     {
-        icon: <FaHome />,
+        icon: FaHome,
         label: 'Home'
     },
     {
-        icon: <FaHome />,
-        label: 'Home'
+        icon: FaCalendar,
+        label: 'Schedule'
     },
     {
-        icon: <FaHome />,
-        label: 'Home'
+        icon: FaCheckCircle,
+        label: 'Create task'
     },
     {
-        icon: <FaHome />,
-        label: 'Home'
+        icon: FaUser,
+        label: 'Profile'
     }
 ]
 
 export const Menu = () => {
     return(
-        <section>
+        <MenuWrapper>
             {
                 MenuOptions.map((item,i)=> <ItemMenu key={i} {...item} /> )
             }
-        </section>
+        </MenuWrapper>
     );
 }
