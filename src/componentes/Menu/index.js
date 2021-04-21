@@ -5,27 +5,31 @@ import { MenuWrapper } from "../../pages/Home/style";
 const MenuOptions = [
     {
         icon: FaHome,
-        label: 'Home'
+        label: 'Home',
+        path: "/"
     },
     {
         icon: FaCalendar,
-        label: 'Schedule'
+        label: 'Schedule',
+        path: "/schedule"
     },
     {
         icon: FaCheckCircle,
-        label: 'Create task'
+        label: 'Create task',
+        path: "/create"
     },
     {
         icon: FaUser,
-        label: 'Profile'
+        label: 'Profile',
+        path: "/profile"
     }
 ]
 
-export const Menu = () => {
+export const Menu = ({pathname}) => {
     return(
         <MenuWrapper>
             {
-                MenuOptions.map((item,i)=> <ItemMenu key={i} {...item} /> )
+                MenuOptions.map((item,i)=> <ItemMenu active={item.path === pathname} key={i} {...item} /> )
             }
         </MenuWrapper>
     );
