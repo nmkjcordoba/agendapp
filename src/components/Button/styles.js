@@ -12,6 +12,6 @@ export const StyleButton = styled.button`
     text-align: center;
     font-size: 0.96em;
     border-radius: 10px;
-    font-weight:bold;
-    outline:none;
+    font-weight: bold;
+    outline: none;
 `;

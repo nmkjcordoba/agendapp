@@ -15,12 +15,6 @@ export const PageWrapper = styled.div`
   padding: 15px 20px;
 `;
 
-
-export const LogoWrapper = styled.div`
-    text-align: center;
+export const PageWrapperMenu = styled.div`
+  padding: 15px 15px 71px;
 `;
-
-export const TopLink = styled.div`
-    text-align: right;
-`;
-
