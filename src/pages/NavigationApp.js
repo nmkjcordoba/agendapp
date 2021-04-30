@@ -10,7 +10,6 @@ import { CreateTask } from "./CreateTask";
 import { TaskDetail } from "./TaskDetail";
 import { Menu } from "../components/Menu";
 import { PageWrapperMenu } from "../globalStyles";
-import { Topbar } from "../components/Topbar";
 
 
 const AuthenticatedUser = ({children}) => {
@@ -23,7 +22,7 @@ const AuthenticatedUser = ({children}) => {
 
   return (
     <Fragment>
-      <Topbar title="titulo pagina" />
+      
       <PageWrapperMenu>
         {children}
       </PageWrapperMenu>
@@ -70,10 +69,18 @@ export const NavigationApp = () => {
         auth && (
           <AuthenticatedUser>
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/schedule" component={Schedule} />
-              <Route path="/create" component={CreateTask} />
-              <Route path="/detail/:id" component={TaskDetail} />
+              <Route exact path="/">
+                <Home title="Task" />
+              </Route>
+              <Route path="/schedule" >
+                <Schedule title="Schedules" />
+              </Route>
+              <Route path="/create" >
+                <CreateTask title="Create new task" />
+              </Route>
+              <Route path="/detail/:id">
+                <TaskDetail title="Task detail" />
+              </Route>
               <Route path="*" component={NotFound} />
             </Switch>
           </AuthenticatedUser>
