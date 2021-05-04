@@ -1,9 +1,11 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Topbar } from "../../components/Topbar";
 import  Select  from "react-select";
 import DatePicker from "react-date-picker";
+import { useForm, Controller } from "react-hook-form";
+import { LabelError, Textarea } from "./styles";
 
 const USER = [
     {value: 1, label: 'Juan'},
@@ -16,32 +18,76 @@ const USER = [
 
 export const CreateTask = ({title}) => {
 
-    const [dueDateTask, setDueDateTask] = useState(new Date());
-    const [description, setDescription] = useState('');
+    const { register, control, handleSubmit, formState: {errors } } = useForm();
+
+    const onSubmitCreate = (data) =>{
+        console.log("form data", data)
+    }
 
     return(
         <Fragment>
             <Topbar title={title} />
-            <form>
-                <Input label="Task title" type="text" placeholder="Enter task title" />
+            <form onSubmit={handleSubmit(onSubmitCreate)} >
+                <Input 
+                    register={register} 
+                    name="taskTitle" 
+                    rules={{required:true, minLength:6}} 
+                    label="Task title" 
+                    type="text" 
+                    placeholder="Enter task title" 
+                />
+                {   errors.taskTitle?.type === "required" && <LabelError>Field required</LabelError> }
+                {   errors.taskTitle?.type === "minLength" && <LabelError>Min Length 6 characters</LabelError> }
+                
                 <div>
                     <label>Responsible</label>
-                    <Select options={USER} placeholder="Responsible" />
+                    <Controller 
+                        name="responsible" 
+                        control={control}
+                        rules={{required:true}}
+                        render={ ({field}) => <Select {...field} options={USER} placeholder="Responsible" /> } 
+                    />
+                    {
+                        errors.responsible && <LabelError>field required</LabelError>
+                    }
                 </div>
                 <div>
                     <label>Collaborators</label>
-                    <Select isMulti placeholder="Select collaborators" options = {USER} />
+                    <Controller 
+                        name="colaborators"
+                        control={control}
+                        rules={{required:true}}
+                        render={ ({field} ) => <Select {...field} isMulti placeholder="Select collaborators" options = {USER} /> }
+                    />
+                    {
+                        errors.colaborators && <LabelError>field required</LabelError>
+                    }
                 </div>
                 <div>
-                    <DatePicker locale="en-EN" format="dd-MM-yy" value={dueDateTask} onChange={setDueDateTask} />
+                    <Controller 
+                    name="dueDateTask"
+                    control={control}
+                    rules={{required:true}}
+                    defaultValue={new Date()}
+                    render={ ({field} ) => <DatePicker {...field} locale="en-EN" format="dd-MM-yy"  /> }
+                    />
+                    {
+                        errors.dueDateTask && <LabelError>field required</LabelError>
+                    }
                 </div>
                 <div>
                     <label>Description:</label>
-                    <textarea value={description} onChange={(e) => setDescription(e.target.value) } rows="3" ></textarea>
-                    {description}
+                    <Textarea 
+                        {...register("description", {required:true} ) } 
+                        rows="3" 
+                        errors={ errors.description}
+                    />
                 </div>
+                {
+                        errors.description && <LabelError>field required</LabelError>
+                    }
                 <div>
-                    <Button text="create" />
+                    <Button type="submit" text="create" />
                 </div>
             </form>
         </Fragment>

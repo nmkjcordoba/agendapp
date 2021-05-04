@@ -13,10 +13,10 @@ const Icono = ({ showEye, onPress }) => (
   </IconWrapper>
 );
 
-export const Input = ({ label, type, placeholder }) => {
+export const Input = ({ label, type, placeholder, register, name, rules = {} }) => {
   const [typeInput, setTypeInput] = useState(type);
 
-  const toogleTypeInput = (e) => {
+  const toogleTypeInput = () => {
     setTypeInput(typeInput === "password" ? "text" : "password");
   };
 
@@ -24,7 +24,7 @@ export const Input = ({ label, type, placeholder }) => {
     <InputContainer>
       <Label>{label}</Label>
       <InputWrapper>
-        <InputType placeholder={placeholder} type={typeInput} />
+        <InputType {...register(name,rules)} placeholder={placeholder} type={typeInput} />
         {type === "password" && (
           <Icono onPress={toogleTypeInput} showEye={typeInput === "text"} />
         )}
