@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { LabelError } from "../CreateTask/styles";
 
 export const Signin = () => {
-  const { register, control, handleSubmit, formState: { errors,isValid } } = useForm({mode: 'onChange'});
+  const { register, handleSubmit, formState: { errors,isValid } } = useForm({mode: 'onChange'});
   
   const onSubmitCreate = (data) =>{
       console.log("form data", data)
